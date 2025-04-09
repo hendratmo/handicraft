@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<meta name="description" content="About the Travel Blog">
+{% endblock %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+
+    <!-- Content -->
+    <h1 class="ALL-special-font ALL-h1 text-center">About Us</h1>
+
+    <!-- Cards: Culture (missing piece)-->
+    {% for item in items %}
+    <section class="container-fluid mt-4">
+        <div class="row justify-content-center">
+            <div class="row no-gutters" style="width: 57rem;">
+                <div class="col-md-6 card-img ALL-picture ">
+                    <img src="{{ item.image }}" class="card-img" alt="image">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text text-justify">{{ item.content }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+
+{% endblock %}
