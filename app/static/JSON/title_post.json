@@ -1,0 +1,28 @@
+{
+    "post" : {
+        "image_1" : {
+            "title" : "Buket Boneka",
+            "content" : "A sweet combination of charm and elegance, the doll + flower bouquet pairs adorable plush toys with beautiful fresh flowers. Ideal for gifting on special occasions like graduations or romantic gestures, this bundle brings joy, warmth, and a lasting impression."
+        },
+        "image_2" : {
+            "title" : "Buket Bunga",
+            "content" : "A classic symbol of love and appreciation, our flower bouquets are thoughtfully arranged using fresh, hand-picked blooms. Perfect for birthdays, anniversaries, or simply to brighten someone's day, each bouquet delivers natural beauty and heartfelt meaning in every petal."
+        },
+        "image_3" : {
+            "title" : "Buket Coklat",
+            "content" : "The ultimate gesture of love and indulgence, this bouquet blends premium chocolates with fresh, fragrant flowers. Whether for a romantic date or a luxurious surprise, this combo delights both the heart and the taste buds — a timeless treat for any celebration."
+        },
+        "image_4" : {
+            "title" : "Handicraft",
+            "content" : "Handcrafted with precision and creativity, our beads handicrafts reflect a deep appreciation for artistry. From elegant accessories to intricate decorative pieces, each item is a unique expression of tradition, patience, and modern design — perfect for thoughtful gifts or personal collections."
+        },
+        "image_5" : {
+            "title" : "Buket Bunga Spesial",
+            "content" : "A delightful trio of sweetness, elegance, and charm — this bouquet features luxurious chocolates, fresh handpicked flowers, and a cuddly plush doll. Perfect for birthdays, anniversaries, or heartfelt surprises, it’s a gift that speaks love, warmth, and thoughtfulness all at once."
+        },
+        "image_6" : {
+            "title" : "Gantungan Tas",
+            "content" : "Handwoven with care and creativity, our beaded bags are a blend of tradition and modern style. Each piece is meticulously crafted with colorful beads, forming elegant patterns that stand out. Whether for everyday wear or special occasions, this accessory adds a touch of handmade beauty to any outfit."
+        }
+    }
+}

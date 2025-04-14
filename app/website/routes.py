@@ -18,7 +18,9 @@ from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 from os import listdir
 
-directory_image_about = "app/static/Pictures_Liquet/"
+directory_image_about = "app/static/Pictures_Liquet_About/"
+directory_image_post = "app/static/Pictures_Liquet_Post/"
+
 website = Blueprint('website', __name__,
                     static_folder="../static", template_folder="../template")
 load_dotenv()
@@ -27,8 +29,15 @@ load_dotenv()
 # Routes available for registered and non-registered users alike
 
 def text():
-    with open("app/static/JSON/text.json", "r") as file:
-        return json.load(file)
+    with open("app/static/JSON/about_text.json", "r") as about_file, \
+        open("app/static/JSON/title_post.json", "r") as post_file:
+
+        about_data = json.load(about_file)
+        post_data = json.load(post_file)
+        return {
+            "isi_about_data" : about_data,
+            "isi_post_data" : post_data
+        }
 
 @website.route("/")
 def home():
@@ -55,33 +64,63 @@ def home():
 
     return render_template('website/index.html', posts_all=posts_all, posts_themes=posts_themes, logged_in=current_user.is_authenticated, forth_theme_post_ids=forth_theme_post_ids)
 
+#FUNGSI HALAMAN ALL LAMA
 # route to 'All Posts' page or page by chosen theme
+# @website.route("/all/<int:index>")
+# def all(index):
+#     index = int(index)
+#     all_blog_posts = None
+#     chosen_theme = ""
+#     intros = []
+#     if index != 0:
+#         chosen_theme = db.session.query(
+#             Blog_Theme).filter(Blog_Theme.id == index).first().theme
+#         all_blog_posts = db.session.query(Blog_Posts).filter(Blog_Posts.theme_id == index,
+#             Blog_Posts.admin_approved == "TRUE", Blog_Posts.date_to_post <= datetime.utcnow(),
+#         ).order_by(desc(Blog_Posts.date_to_post)).limit(25)
+#     else:
+#         all_blog_posts = db.session.query(Blog_Posts).filter(
+#             Blog_Posts.admin_approved == "TRUE", Blog_Posts.date_to_post <= datetime.utcnow(),
+#             ).order_by(desc(Blog_Posts.date_to_post)).limit(25)
+#     for post in all_blog_posts:
+#         if len(post.intro) > 300:
+#             cut_intro_if_too_long = f"{post.intro[:300]}..."
+#             intros.append(cut_intro_if_too_long)
+#         else:
+#             intros.append(post.intro)
+
+#     return render_template('website/all_posts.html', all_blog_posts=all_blog_posts, chosen_theme=chosen_theme, intros=intros, logged_in=current_user.is_authenticated)
+
 @website.route("/all/<int:index>")
 def all(index):
+    text_data = text()
     index = int(index)
-    all_blog_posts = None
-    chosen_theme = ""
-    intros = []
-    if index != 0:
-        chosen_theme = db.session.query(
-            Blog_Theme).filter(Blog_Theme.id == index).first().theme
-        all_blog_posts = db.session.query(Blog_Posts).filter(Blog_Posts.theme_id == index,
-            Blog_Posts.admin_approved == "TRUE", Blog_Posts.date_to_post <= datetime.utcnow(),
-        ).order_by(desc(Blog_Posts.date_to_post)).limit(25)
-    else:
-        all_blog_posts = db.session.query(Blog_Posts).filter(
-            Blog_Posts.admin_approved == "TRUE", Blog_Posts.date_to_post <= datetime.utcnow(),
-            ).order_by(desc(Blog_Posts.date_to_post)).limit(25)
-    for post in all_blog_posts:
-        if len(post.intro) > 300:
-            cut_intro_if_too_long = f"{post.intro[:300]}..."
-            intros.append(cut_intro_if_too_long)
-        else:
-            intros.append(post.intro)
+    isi = []
+    post_data = list(text_data.get("isi_post_data", {}).get("post", {}).values())
+    for item in post_data:
+        if len(item["content"]) > 150:
+            cut_intro_if_too_long = f"{item["content"][:150]}..."
+            isi.append(cut_intro_if_too_long)
+    image_files = [
+        img for img in os.listdir(directory_image_post)
+        if img.endswith((".jpg", ".jpeg", ".png", ".webp"))
+    ]
+    
+    items = [
+        {
+            "image" : f"/static/Pictures_Liquet_Post/{image}",
+            "title" : post_data[i]["title"]
+                if i < len(post_data)
+                    else "Default title",
+            "content" : isi[i]
+                if i < len(isi)
+                    else "Default content"
+        }
+        for i, image in enumerate(image_files)
+    ]
+    return render_template('website/all_posts.html', items = items)
 
-    return render_template('website/all_posts.html', all_blog_posts=all_blog_posts, chosen_theme=chosen_theme, intros=intros, logged_in=current_user.is_authenticated)
-
-#FUNGSIO ABOUT LAMA, UNTUK AMBIL SEMUA FOTO DI DATABASE
+#FUNGSI ABOUT LAMA, UNTUK AMBIL SEMUA FOTO DI DATABASE
 # @website.route("/about/")
 # def about():
 #     authors_all = db.session.query(Blog_User).filter(
@@ -92,7 +131,7 @@ def all(index):
 @website.route("/about/")
 def about():
     text_data = text()
-    about_data = list(text_data.get("about", {}).values())
+    about_data = list(text_data.get("isi_about_data", {}).get("about", {}).values())
     image_files = [
         img for img in os.listdir(directory_image_about)
         if img.endswith((".jpg", ".jpeg", ".png", ".webp"))
@@ -100,7 +139,7 @@ def about():
 
     items = [
         {
-            "image" : f"/static/Pictures_Liquet/{image}",
+            "image" : f"/static/Pictures_Liquet_About/{image}",
             "title" : about_data[i]["title"] 
                 if i < len(about_data) 
                     else "Default title",
