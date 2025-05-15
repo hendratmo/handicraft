@@ -4,7 +4,8 @@ from datetime import timedelta
 
 class Config:
     SECRET_KEY = "myFlaskApp4Fun"  # needed for login with wtforms
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///admin.db' 
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///admin.db'
+    # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@localhost/handicraft' 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     TEMPLATES_AUTO_RELOAD = True
     ABSOLUTE_PATH = os.path.dirname(__file__)
@@ -13,6 +14,6 @@ class Config:
     PROFILE_IMG_FOLDER = os.path.join(ABSOLUTE_PATH, RELATIVE_PATH)
     BLOG_IMG_FOLDER = os.path.join(ABSOLUTE_PATH, BLOG_PICTURES_PATH)
     STATIC_FOLDER = os.path.join(ABSOLUTE_PATH, "static")
-    ALLOWED_IMG_EXTENSIONS = ['PNG', 'JPG', 'JPEG']
+    ALLOWED_IMG_EXTENSIONS = ['PNG', 'JPG', 'JPEG', 'WEBP']
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 

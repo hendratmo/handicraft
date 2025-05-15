@@ -20,6 +20,7 @@ from os import listdir
 
 directory_image_about = "app/static/Pictures_Liquet_About/"
 directory_image_post = "app/static/Pictures_Liquet_Post/"
+directory_image_theme = "app/static/Pictures_Themes/"
 
 website = Blueprint('website', __name__,
                     static_folder="../static", template_folder="../template")
@@ -30,39 +31,68 @@ load_dotenv()
 
 def text():
     with open("app/static/JSON/about_text.json", "r") as about_file, \
-        open("app/static/JSON/title_post.json", "r") as post_file:
+        open("app/static/JSON/title_post.json", "r") as post_file, \
+        open("app/static/JSON/post.json", "r") as isi_file:
 
         about_data = json.load(about_file)
         post_data = json.load(post_file)
+        isi_data = json.load(isi_file)
         return {
             "isi_about_data" : about_data,
-            "isi_post_data" : post_data
+            "isi_post_data" : post_data,
+            "isi_isi_data" : isi_data
         }
+    
+def theme_photo():
+    folder_theme = "/static/Pictures_Themes/"
+    files = os.listdir(folder_theme)
+    images = []
+    for file in files:
+        if file.endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
+            images.append(folder_theme + '/' + file)
+    return images
+
+#ROUTE HALAMAN HOME LAMA
+# @website.route("/")
+# def home():
+#     # query database for themes while getting picture src
+#     posts_themes = [(u.theme, u.picture, u.id)
+#                     for u in db.session.query(Blog_Theme).all()]
+#     theme_list = [t[2] for t in posts_themes]
+    
+#     # query posts to get the latest 3 posts of each theme. 
+#     # Important note: the code bellow is not maintainable if we increase the number of themes, but I could not achieve a better result on my own.
+#     # This should be improved.
+#     # The code also selects the forth theme's query results' ids to identify these posts, as this is the only group of posts displayed separately in index.html
+#     posts_all = []
+#     forth_theme_post_ids = []
+#     for num_themes in theme_list:
+#         query = db.session.query(Blog_Posts).filter(
+#                 Blog_Posts.admin_approved == "TRUE", Blog_Posts.date_to_post <= datetime.utcnow(),
+#             Blog_Posts.theme_id == num_themes).order_by(desc(Blog_Posts.date_to_post)).limit(3)
+#         posts_all.append(query.all())
+#         if num_themes == 4:
+#             for this_query in query:
+#                 forth_theme_post_ids.append(this_query.id)
+#     posts_all = posts_all[0] + posts_all[1] + posts_all[2] + posts_all[3]
+
+#     return render_template('website/index_lama.html', posts_all=posts_all, posts_themes=posts_themes, logged_in=current_user.is_authenticated, forth_theme_post_ids=forth_theme_post_ids)
 
 @website.route("/")
 def home():
-    # query database for themes while getting picture src
-    posts_themes = [(u.theme, u.picture, u.id)
-                    for u in db.session.query(Blog_Theme).all()]
-    theme_list = [t[2] for t in posts_themes]
-    
-    # query posts to get the latest 3 posts of each theme. 
-    # Important note: the code bellow is not maintainable if we increase the number of themes, but I could not achieve a better result on my own.
-    # This should be improved.
-    # The code also selects the forth theme's query results' ids to identify these posts, as this is the only group of posts displayed separately in index.html
-    posts_all = []
-    forth_theme_post_ids = []
-    for num_themes in theme_list:
-        query = db.session.query(Blog_Posts).filter(
-                Blog_Posts.admin_approved == "TRUE", Blog_Posts.date_to_post <= datetime.utcnow(),
-            Blog_Posts.theme_id == num_themes).order_by(desc(Blog_Posts.date_to_post)).limit(3)
-        posts_all.append(query.all())
-        if num_themes == 4:
-            for this_query in query:
-                forth_theme_post_ids.append(this_query.id)
-    posts_all = posts_all[0] + posts_all[1] + posts_all[2] + posts_all[3]
+    image_files = [
+        img for img in os.listdir(directory_image_theme)
+        if img.endswith(('.jpg', '.jpeg', 'png', '.gif', 'webp'))
+    ]
 
-    return render_template('website/index.html', posts_all=posts_all, posts_themes=posts_themes, logged_in=current_user.is_authenticated, forth_theme_post_ids=forth_theme_post_ids)
+    items = [
+        {
+            "id" : os.path.splitext(image_files[i])[0],
+            "image" : '/static/Pictures_Themes/' + image_files[i]
+        }
+        for i, image in enumerate(image_files)
+    ]
+    return render_template('website/index.html', hasil = items)
 
 #FUNGSI HALAMAN ALL LAMA
 # route to 'All Posts' page or page by chosen theme
@@ -89,12 +119,11 @@ def home():
 #         else:
 #             intros.append(post.intro)
 
-#     return render_template('website/all_posts.html', all_blog_posts=all_blog_posts, chosen_theme=chosen_theme, intros=intros, logged_in=current_user.is_authenticated)
+#     return render_template('website/contoh_all_post.html', all_blog_posts=all_blog_posts, chosen_theme=chosen_theme, intros=intros, logged_in=current_user.is_authenticated)
 
-@website.route("/all/<int:index>")
-def all(index):
+@website.route("/all")
+def all():
     text_data = text()
-    index = int(index)
     isi = []
     post_data = list(text_data.get("isi_post_data", {}).get("post", {}).values())
     for item in post_data:
@@ -108,7 +137,8 @@ def all(index):
     
     items = [
         {
-            "image" : f"/static/Pictures_Liquet_Post/{image}",
+            "id" : post_data[i]["id"],
+            "image" : post_data[i]["image"],
             "title" : post_data[i]["title"]
                 if i < len(post_data)
                     else "Default title",
@@ -118,6 +148,7 @@ def all(index):
         }
         for i, image in enumerate(image_files)
     ]
+    print(items)
     return render_template('website/all_posts.html', items = items)
 
 #FUNGSI ABOUT LAMA, UNTUK AMBIL SEMUA FOTO DI DATABASE
@@ -200,38 +231,65 @@ def contact():
     return render_template('website/contact.html', msg_sent=False, logged_in=current_user.is_authenticated)
 
 
+#FUNGSI POST LAMA
+# @website.route("/post/<int:index>", methods=["GET", "POST"])
+# def blog_post(index):
+#     # get the post
+#     blog_post = db.session.query(Blog_Posts).filter(Blog_Posts.id == index,
+#                                                     Blog_Posts.admin_approved == "TRUE", Blog_Posts.date_to_post <= datetime.utcnow(),
+#                                                     ).order_by(Blog_Posts.date_submitted.desc()).first()
+#     # get the likes
+#     post_likes = db.session.query(Blog_Likes).filter(
+#         Blog_Likes.post_id == index).all()
+
+#     # check if user is logged in, and if so, already liked or bookmarked this post
+#     user_liked = False
+#     user_bookmarked = False
+#     if current_user.is_authenticated:
+#         like = db.session.query(Blog_Likes).filter(
+#             Blog_Likes.user_id == current_user.id, Blog_Likes.post_id == index).first()
+#         bookmark = db.session.query(Blog_Bookmarks).filter(
+#             Blog_Bookmarks.user_id == current_user.id, Blog_Bookmarks.post_id == index).first()
+#     else:
+#         like = False
+#         bookmark = False
+#     if like:
+#         user_liked = True
+#     if bookmark:
+#         user_bookmarked = True
+#     # get the comments
+#     comments = db.session.query(Blog_Comments).filter(
+#         Blog_Comments.post_id == index).order_by(Blog_Comments.date_submitted.desc()).limit(25)
+#     # get the replies
+#     replies = db.session.query(Blog_Replies).filter(Blog_Replies.post_id == index,
+#                                                     ).order_by(Blog_Replies.date_submitted.asc()).limit(100)
+#     return render_template('website/post_lama.html', blog_posts=blog_post, logged_in=current_user.is_authenticated, comments=comments, replies=replies, post_likes=post_likes, user_liked=user_liked, user_bookmarked=user_bookmarked)
+
 @website.route("/post/<int:index>", methods=["GET", "POST"])
 def blog_post(index):
-    # get the post
-    blog_post = db.session.query(Blog_Posts).filter(Blog_Posts.id == index,
-                                                    Blog_Posts.admin_approved == "TRUE", Blog_Posts.date_to_post <= datetime.utcnow(),
-                                                    ).order_by(Blog_Posts.date_submitted.desc()).first()
-    # get the likes
-    post_likes = db.session.query(Blog_Likes).filter(
-        Blog_Likes.post_id == index).all()
-
-    # check if user is logged in, and if so, already liked or bookmarked this post
-    user_liked = False
-    user_bookmarked = False
-    if current_user.is_authenticated:
-        like = db.session.query(Blog_Likes).filter(
-            Blog_Likes.user_id == current_user.id, Blog_Likes.post_id == index).first()
-        bookmark = db.session.query(Blog_Bookmarks).filter(
-            Blog_Bookmarks.user_id == current_user.id, Blog_Bookmarks.post_id == index).first()
-    else:
-        like = False
-        bookmark = False
-    if like:
-        user_liked = True
-    if bookmark:
-        user_bookmarked = True
-    # get the comments
-    comments = db.session.query(Blog_Comments).filter(
-        Blog_Comments.post_id == index).order_by(Blog_Comments.date_submitted.desc()).limit(25)
-    # get the replies
-    replies = db.session.query(Blog_Replies).filter(Blog_Replies.post_id == index,
-                                                    ).order_by(Blog_Replies.date_submitted.asc()).limit(100)
-    return render_template('website/post.html', blog_posts=blog_post, logged_in=current_user.is_authenticated, comments=comments, replies=replies, post_likes=post_likes, user_liked=user_liked, user_bookmarked=user_bookmarked)
+    index = index - 1
+    text_data = text()
+    isi_dict = text_data.get('isi_isi_data', {}).get('Isi', {})
+    outer_keys = list(isi_dict)
+    if index < 0 or index >= len(outer_keys):
+        return "Post Not Found", 404
+    
+    selected_key = outer_keys[index]
+    post_dict = isi_dict.get(selected_key, {})
+    post_list = list(post_dict.values())
+    
+    items = []
+    for post in post_list:
+        items.append({
+            "id" : post.get("id"),
+            "title" : post.get("title"),
+            "short_title" : post.get("short_title"),
+            "content" : post.get("content"),
+            "image" : post.get("image"),
+            "description" : post.get("description"),
+            "judul" : selected_key
+    })
+    return render_template('website/post.html', items = items)
 
 # Comment or reply on post
 @website.route("/comment_post/<int:index>", methods=["POST"])

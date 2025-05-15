@@ -1,28 +1,34 @@
 {
     "post" : {
-        "image_1" : {
-            "title" : "Buket Boneka",
-            "content" : "A sweet combination of charm and elegance, the doll + flower bouquet pairs adorable plush toys with beautiful fresh flowers. Ideal for gifting on special occasions like graduations or romantic gestures, this bundle brings joy, warmth, and a lasting impression."
+        "handicraft" : {
+            "id" : "1",
+            "title" : "Bead Bliss",
+            "content" : "Handcrafted with precision and creativity, our beads handicrafts reflect a deep appreciation for artistry. From elegant accessories to intricate decorative pieces, each item is a unique expression of tradition, patience, and modern design — perfect for thoughtful gifts or personal collections.",
+            "image" : "/static/Pictures_Liquet_Post/Post_4.jpeg"
         },
-        "image_2" : {
-            "title" : "Buket Bunga",
-            "content" : "A classic symbol of love and appreciation, our flower bouquets are thoughtfully arranged using fresh, hand-picked blooms. Perfect for birthdays, anniversaries, or simply to brighten someone's day, each bouquet delivers natural beauty and heartfelt meaning in every petal."
+        "buket_coklat" : {
+            "id" : "2",
+            "title" : "Choco Bloom",
+            "content" : "The ultimate gesture of love and indulgence, this bouquet blends premium chocolates with fresh, fragrant flowers. Whether for a romantic date or a luxurious surprise, this combo delights both the heart and the taste buds — a timeless treat for any celebration.",
+            "image" : "/static/Pictures_Liquet_Post/Post_3.jpeg"
         },
-        "image_3" : {
-            "title" : "Buket Coklat",
-            "content" : "The ultimate gesture of love and indulgence, this bouquet blends premium chocolates with fresh, fragrant flowers. Whether for a romantic date or a luxurious surprise, this combo delights both the heart and the taste buds — a timeless treat for any celebration."
+        "buket_boneka" : {
+            "id" : "3",
+            "title" : "Doll Blossom",
+            "content" : "A sweet combination of charm and elegance, the doll + flower bouquet pairs adorable plush toys with beautiful fresh flowers. Ideal for gifting on special occasions like graduations or romantic gestures, this bundle brings joy, warmth, and a lasting impression.",
+            "image" : "/static/Pictures_Liquet_Post/Post_1.jpeg"
         },
-        "image_4" : {
-            "title" : "Handicraft",
-            "content" : "Handcrafted with precision and creativity, our beads handicrafts reflect a deep appreciation for artistry. From elegant accessories to intricate decorative pieces, each item is a unique expression of tradition, patience, and modern design — perfect for thoughtful gifts or personal collections."
+        "buket_bunga" : {
+            "id" : "4",
+            "title" : "Flower Belle",
+            "content" : "A classic symbol of love and appreciation, our flower bouquets are thoughtfully arranged using fresh, hand-picked blooms. Perfect for birthdays, anniversaries, or simply to brighten someone's day, each bouquet delivers natural beauty and heartfelt meaning in every petal.",
+            "image" : "/static/Pictures_Liquet_Post/Post_2.jpeg"
         },
-        "image_5" : {
-            "title" : "Buket Bunga Spesial",
-            "content" : "A delightful trio of sweetness, elegance, and charm — this bouquet features luxurious chocolates, fresh handpicked flowers, and a cuddly plush doll. Perfect for birthdays, anniversaries, or heartfelt surprises, it’s a gift that speaks love, warmth, and thoughtfulness all at once."
-        },
-        "image_6" : {
-            "title" : "Gantungan Tas",
-            "content" : "Handwoven with care and creativity, our beaded bags are a blend of tradition and modern style. Each piece is meticulously crafted with colorful beads, forming elegant patterns that stand out. Whether for everyday wear or special occasions, this accessory adds a touch of handmade beauty to any outfit."
+        "gantungan_tas" : {
+            "id" : "5",
+            "title" : "Little Keythings",
+            "content" : "Handwoven with care and creativity, our beaded bags are a blend of tradition and modern style. Each piece is meticulously crafted with colorful beads, forming elegant patterns that stand out. Whether for everyday wear or special occasions, this accessory adds a touch of handmade beauty to any outfit.",
+            "image" : "/static/Pictures_Liquet_Post/Post_5.jpeg"
         }
     }
 }
