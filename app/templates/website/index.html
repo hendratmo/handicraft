@@ -14,9 +14,9 @@
         <p class="HOME-sub-title"><span>Make your very own Bouquet and Handicraft seamless..:)</span></p>
     </section>
 
-    <!-- Cards: Themes -->
+    <!-- Cards -->
     <section class="container-fluid mt-4">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" id="id_random_3_images">
             {% for item in hasil %}
             <div class="col col-auto mb-3 HOME-theme-btn">
                 <a class="ALL-no-hover" href="/post/{{ loop.index }}">
@@ -32,30 +32,40 @@
         </div>
     </section>
 
-    <!-- Cards: Beach -->
-    <section class="container-fluid">
+    <section class="mb-3 container-fluid">
         <div class="row justify-content-center">
-            <div class="col col-auto mb-3">
-                <a class="ALL-no-hover" href="">
-                    <div class="card h-100 HOME-card ALL-post-hover" style="width: 18rem;">
-                        <img src="" class="card-img-top" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title ALL-no-hover"></h5>
-                        </div>
-                        <div class="card-footer HOME-card-footer">
-                            <small class="text-muted ALL-no-hover"></small>
-                        </div>
-                    </div>
-                </a>
+            <div class="col-lg-6 col-md-7">
+                <h3 class="text-center">Our Best Seller</h3>
             </div>
         </div>
     </section>
 
-    <!-- Cards: Culture -->
+    <!-- Cards: Blinking 3 -->
+    <section class="container-fluid">
+        <div class="row justify-content-center">
+            {% for item in hasil_2[:3] %}
+            <div class="col col-auto mb-3">
+                <a class="ALL-no-hover" href="">
+                    <div class="card h-100 HOME-card ALL-post-hover" style="width: 12rem;">
+                        <img src="{{ item.image }}" class="card-img-top" id="id_{{ loop.index }}" style="object-fit:cover;width:100%;height:23rem;" />
+                        <div class="card-body">
+                            <h5 class="card-title ALL-no-hover"></h5>
+                        </div>
+                        <div class="card-footer HOME-card-footer">
+                            <small class="text-muted ALL-no-hover" id="id_text_{{ loop.index }}">{{ item.id }}</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Cards: HR -->
     <section class="container-fluid mt-4 HOME-backg">
         <div class="row justify-content-center">
             <div class="col col-auto mb-3">
-                <a class="ALL-no-hover" href="">
+                <a class="ALL-no-hover">
                     <div class="card h-100 ALL-post-hover" style="width: 27.9rem;">
                         <img src="" class="card-img" alt="" />
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
@@ -66,41 +76,98 @@
                         </div>
                     </div>
                 </a>
-        </div>
-    </section>
-
-    <!-- Cards: Nature -->
-    <section class="container-fluid mt-4 HOME-backg">
-        <div class="row justify-content-center">
-            <div class="col col-auto mb-3">
-                <a class="ALL-no-hover" href="">
-                    <div class="card h-100 HOME-card ALL-post-hover" style="width: 18rem;">
-                        <img src="" class="card-img-top" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title ALL-no-hover"></h5>
-                        </div>
-                        <div class="card-footer HOME-card-footer">
-                            <small class="text-muted"></small>
-                        </div>
-                    </div>
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- Cards: Culture -->
-    <section class="container-fluid mt-4">
-        <div class="row justify-content-center" >
-            <a class="ALL-no-hover" href="">
-                <div class="row no-gutters ALL-post-hover" style="width: 57rem;">
-                    
-                </div>
-            </a>
+    <section class="mb-3 container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-7">
+                <h3 class="text-center">Birthday Wishes</h3>
+            </div>
         </div>
     </section>
 
-    <!-- Cards: Cities -->
-    <section class="container-fluid mt-4">
+    <!-- Cards: Nature -->
+    <section class="container-fluid mt-12 HOME-backg">
+        <div class="row justify-content-center">
+            <div style="max-width:50rem;">
+                <div class="ALL-no-hover-border" style="position:relative;">
+                    <div class="slideshow fade">
+                        <div class="row no-gutters w-100">
+                            <div class="col-12 col-md-6 d-flex justify-content-center card-img">
+                                <img src="/../static/Birthday_Wishes/Beads Bouquet.webp" class="card-img slideshow-img" alt="">
+                            </div>
+                            <div class="col-12 col-md-6 d-flex flex-column">
+                                <div class="card-body flex-grow-1">
+                                    <h5 class="card-title ALL-no-hover">Blossom Beads</h5>
+                                    <p class="card-text ALL-no-hover text-justify text-break">Send your heartfelt wishes with a special touch - a thoughtful gift to brighten their day and celebrate their journey with love and joy.</p>
+                                </div>
+                                <div class="card-footer HOME-card-footer w-100">
+                                    <p class="card-text ALL-no-hover" ><small class="text-muted">Truly give of freshness</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slideshow fade">
+                        <div class="row no-gutters w-100">
+                            <div class="col-12 col-md-6 d-flex justify-content-center card-img">
+                                <img src="/../static/Birthday_Wishes/Choco Bouquet.jpg" class="card-img slideshow-img" alt="">
+                            </div>
+                            <div class="col-12 col-md-6 d-flex flex-column">
+                                <div class="card-body flex-grow-1">
+                                    <h5 class="card-title ALL-no-hover">Sweet Love</h5>
+                                    <p class="card-text ALL-no-hover text-justify text-break">Celebrate their special day with a sweet surprise — a chocolate bouquet that wraps your warmest wishes in every bite.</p>
+                                </div>
+                                <div class="card-footer HOME-card-footer w-100">
+                                    <p class="card-text ALL-no-hover" ><small class="text-muted">Truly give of freshness</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slideshow fade">
+                        <div class="row no-gutters w-100">
+                            <div class="col-12 col-md-6 d-flex justify-content-center card-img">
+                                <img src="/../static/Birthday_Wishes/Flower Bouquet.webp" class="card-img slideshow-img" alt="">
+                            </div>
+                            <div class="col-12 col-md-6 d-flex flex-column">
+                                <div class="card-body flex-grow-1">
+                                    <h5 class="card-title ALL-no-hover">Petal & Bloom</h5>
+                                    <p class="card-text ALL-no-hover text-justify text-break">Brighten their birthday with a beautiful flower bouquet that speaks love, joy, and heartfelt wishes without saying a word.</p>
+                                </div>
+                                <div class="card-footer HOME-card-footer w-100">
+                                    <p class="card-text ALL-no-hover" ><small class="text-muted">Truly give of freshness</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slideshow fade">
+                        <div class="row no-gutters w-100">
+                            <div class="col-12 col-md-6 d-flex justify-content-center card-img">
+                                <img src="/../static/Birthday_Wishes/Doll Flower Bouquet.webp" class="card-img slideshow-img" alt="">
+                            </div>
+                            <div class="col-12 col-md-6 d-flex flex-column">
+                                <div class="card-body flex-grow-1">
+                                    <h5 class="card-title ALL-no-hover">Fluffy Flourish</h5>
+                                    <p class="card-text ALL-no-hover text-justify text-break">A charming blend of blooms and cuddles — this doll flower bouquet is a hug wrapped in petals.</p>
+                                </div>
+                                <div class="card-footer HOME-card-footer w-100">
+                                    <p class="card-text ALL-no-hover" ><small class="text-muted">Truly give of freshness</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="prev" onclick="plusSlides(-1)">❮</a>
+                        <a class="next" onclick="plusSlides(1)">❯</a>
+                    </div>
+                </div>
+            </div>
+        </div>          
+    </section>
+
+    <!-- Belum tau untuk apa -->
+    <!-- <section class="container-fluid mt-4">
         <div class="row justify-content-center">
             <a class="ALL-no-hover" href="">
                 <div class="col col-auto mb-3">
@@ -110,12 +177,112 @@
                             <h5 class="card-title ALL-no-hover"></h5>
                         </div>
                         <div class="card-footer HOME-card-footer">
-                            <small class="text-muted ALL-no-hover"></small>
+                            <small class="text-muted ALL-no-hover">aaa</small>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
-    </section>
+    </section> -->
 
+    <!-- Cards: Pita -->
+    <section class="container-fluid mt-4" style="background-color:#b7b4d6;height:5rem;">
+        <div class="row text-center h-100">
+            <div class="col-4 d-flex align-items-center justify-content-center pita">
+                <span>
+                    <img class=" ls-is-cached lazyloaded" data-src="//www.flowerchimp.co.id/cdn/shop/files/Frame_5_1_1.png?v=1738677864" alt="" width="32" height="32" src="//www.flowerchimp.co.id/cdn/shop/files/Frame_5_1_1.png?v=1738677864">  
+                </span>
+                <span class="text-pita">
+                    <p class="mb-0">Delivery Across Indonesia</p>
+                </span>
+            </div>
+            <div class="col-4 d-flex align-items-center justify-content-center pita">
+                <span>
+                    <img class=" ls-is-cached lazyloaded" data-src="//www.flowerchimp.co.id/cdn/shop/files/Frame_6_1_1.png?v=1738677745" alt="" width="32" height="32" src="//www.flowerchimp.co.id/cdn/shop/files/Frame_6_1_1.png?v=1738677745">
+                </span>
+                <span class="text-pita">
+                    <p class="mb-0">Choose Your Preferred<br>Delivery Slots</p>
+                </span>
+            </div>
+            <div class="col-4 d-flex align-items-center justify-content-center pita">
+                <span>
+                    <img class=" ls-is-cached lazyloaded" data-src="//www.flowerchimp.co.id/cdn/shop/files/Frame_8_1_1.png?v=1738677626" alt="" width="32" height="32" src="//www.flowerchimp.co.id/cdn/shop/files/Frame_8_1_1.png?v=1738677626">
+                </span>
+                <span class="text-pita">
+                    <p class="mb-0">Products Arranged<br>by Top Rated Artisan</p>
+                </span>
+            </div>
+            
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        let hasil_2 = {{ hasil_2 | tojson }};
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n)
+        {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n)
+        {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n)
+        {
+            let i;
+            let slides = document.getElementsByClassName("slideshow");
+
+            if (n > slides.length)
+            {
+                slideIndex = 1;        
+            }
+
+            if (n < 1)
+            {
+                slideIndex = slides.length;
+            }
+
+            for (i = 0; i < slides.length; i++)
+            {
+                slides[i].style.display = 'none';
+            }
+
+            slides[slideIndex - 1].style.display = 'block';
+        }
+
+        setInterval(berubah, 4000);   
+        function berubah()
+        {
+            const indices = [...Array(hasil_2.length).keys()]
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3);
+
+            for (let i = 1; i < 4; i++)
+            {
+                let img = document.getElementById('id_' + i);
+                let text = document.getElementById('id_text_' + i);
+
+                img.classList.add('fades_blinking_3');
+                text.classList.add('fades_blinking_3');
+                img.style.opacity = 0;
+                text.style.opacity = 0;
+
+                setTimeout(() => {
+                    const acak = indices[i - 1];
+                    img.src = hasil_2[acak]['image'];
+                    text.textContent = hasil_2[acak]['id'];
+
+                    img.style.opacity = 1;
+                    text.style.opacity = 1;
+                }, 1000)
+            }
+        }
+            
+    </script>
 {% endblock %}

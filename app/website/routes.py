@@ -21,6 +21,8 @@ from os import listdir
 directory_image_about = "app/static/Pictures_Liquet_About/"
 directory_image_post = "app/static/Pictures_Liquet_Post/"
 directory_image_theme = "app/static/Pictures_Themes/"
+directory_image_home = "app/static/Best_Seller/"
+directory_image_birthday_wishes = "app/static/Birthday_Wishes/"
 
 website = Blueprint('website', __name__,
                     static_folder="../static", template_folder="../template")
@@ -32,25 +34,19 @@ load_dotenv()
 def text():
     with open("app/static/JSON/about_text.json", "r") as about_file, \
         open("app/static/JSON/title_post.json", "r") as post_file, \
-        open("app/static/JSON/post.json", "r") as isi_file:
+        open("app/static/JSON/post.json", "r") as isi_file, \
+        open("app/static/JSON/birthday_wishes.json", "r") as isi_birthday_wishes:
 
         about_data = json.load(about_file)
         post_data = json.load(post_file)
         isi_data = json.load(isi_file)
+        birthday_wishes = json.load(isi_birthday_wishes)
         return {
             "isi_about_data" : about_data,
             "isi_post_data" : post_data,
-            "isi_isi_data" : isi_data
+            "isi_isi_data" : isi_data,
+            "isi_isi_birthday_wishes" : birthday_wishes
         }
-    
-def theme_photo():
-    folder_theme = "/static/Pictures_Themes/"
-    files = os.listdir(folder_theme)
-    images = []
-    for file in files:
-        if file.endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
-            images.append(folder_theme + '/' + file)
-    return images
 
 #ROUTE HALAMAN HOME LAMA
 # @website.route("/")
@@ -85,6 +81,11 @@ def home():
         if img.endswith(('.jpg', '.jpeg', 'png', '.gif', 'webp'))
     ]
 
+    image_home = [
+        img for img in os.listdir(directory_image_home)
+        if img.endswith(('.jpg', '.jpeg', 'png', '.gif', 'webp'))
+    ]
+
     items = [
         {
             "id" : os.path.splitext(image_files[i])[0],
@@ -92,7 +93,18 @@ def home():
         }
         for i, image in enumerate(image_files)
     ]
-    return render_template('website/index.html', hasil = items)
+
+    #jpeg untuk manik, handicraft
+    #jpg untuk buket bunga dan coklat
+    items_2 = [
+        {
+            "id" : os.path.splitext(image_home[i])[0],
+            "image" : '/static/Best_Seller/' + image_home[i]
+        }
+        for i, image in enumerate(image_home)
+    ]
+
+    return render_template('website/index.html', hasil = items, hasil_2 = items_2)
 
 #FUNGSI HALAMAN ALL LAMA
 # route to 'All Posts' page or page by chosen theme

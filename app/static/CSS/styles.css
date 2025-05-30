@@ -109,6 +109,15 @@ body {
     text-decoration: none !important;
     color: rgb(16, 16, 16);
 }
+.ALL-no-hover-border{
+    text-decoration: none !important;
+    color: rgb(16, 16, 16);
+}
+.slideshow{
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin: 20px;
+}
 .ALL-no-hover:hover {
     text-decoration: none !important;
 }
@@ -243,4 +252,71 @@ input[type=file]::file-selector-button {
 
 .text-center {
     text-align: center !important;
+}
+
+.btn-primary{
+    border-radius: 5rem;
+    background-color: rgb(137, 255, 87);
+    border-style: none;
+    color: black;
+}
+
+.prev, .next{
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    font-weight: bold;
+    padding: 2rem;
+    transition: 1.5s ease;
+    user-select: none;
+    transform: translateY(-50%);
+}
+
+.next {
+    right: 0;
+}
+
+.prev {
+    left: 0;
+}
+
+/* .prev:hover, .next:hover {
+    background-color: rgba(119, 119, 119, 0.8);
+} */
+
+.slideshow {
+    display: none;
+}
+
+.slideshow-img {
+    width: 100%;
+    height: 25rem;
+    object-fit: cover;
+}
+
+.fades_blinking_3 {
+    transition : opacity 1s ease-in-out;
+    opacity : 1;
+}
+
+.fade {
+    /* animation : opacity 2.5s ease-in-out; */
+    animation : fade 1.5s ease-in-out forwards;
+}
+
+@keyframes fade {
+    from{
+        opacity: .1
+    }
+    to{
+        opacity: 1
+    }
+}
+
+.text-pita{
+    color:white;
+    text-align: left;
+    display: inline-block;
+    padding-left: 0.4rem;
 }

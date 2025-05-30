@@ -1,0 +1,24 @@
+{
+    "post" : {
+        "Beads" : {
+            "id" : "1",
+            "image" : "/static/Birthday_Wishes/Beads Bouquet.webp",
+            "description" : "Send your heartfelt wishes with a special touch - a thoughtful gift to brighten their day and celebrate their journey with love and joy."
+        },
+        "Choco" : {
+            "id" : "2",
+            "image" : "/static/Birthday_Wishes/Choco Bouquet.webp",
+            "description" : "Celebrate their special day with a sweet surprise — a chocolate bouquet that wraps your warmest wishes in every bite."
+        },
+        "Flower" : {
+            "id" : "3",
+            "image" : "/static/Birthday_Wishes/Flower Bouquet.webp",
+            "description" : "Brighten their birthday with a beautiful flower bouquet that speaks love, joy, and heartfelt wishes without saying a word."
+        },
+        "Doll Flower" : {
+            "id" : "4",
+            "image" : "/static/Birthday_Wishes/Doll Flower Bouquet.webp",
+            "description" : "A charming blend of blooms and cuddles — this doll flower bouquet is a hug wrapped in petals."
+        }
+    }
+}
