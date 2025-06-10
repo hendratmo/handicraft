@@ -16,14 +16,14 @@
 
     <!-- Cards -->
     <section class="container-fluid mt-4">
-        <div class="row justify-content-center" id="id_random_3_images">
+        <div class="row justify-content-center">
             {% for item in hasil %}
             <div class="col col-auto mb-3 HOME-theme-btn">
-                <a class="ALL-no-hover" href="/post/{{ loop.index }}">
+                <a class="ALL-no-hover" href="/post/{{ item.id }}">
                     <div class="card h-100" style="width: 10rem; border:none;">
                         <img src="{{ item.image }}" class="card-img-top HOME-round-img" alt="Theme" />
                         <div class="card-footer HOME-card-footer" style="display:flex; justify-content: center;">
-                            <small class="text-muted ALL-no-hover" style="font-weight:bold;">{{ item.id }}</small>
+                            <small class="text-muted ALL-no-hover" style="font-weight:bold;">{{ item.id | replace("_", " ") }}</small>
                         </div>
                     </div>
                 </a>
@@ -88,7 +88,7 @@
         </div>
     </section>
 
-    <!-- Cards: Nature -->
+    <!-- Slideshow -->
     <section class="container-fluid mt-12 HOME-backg">
         <div class="row justify-content-center">
             <div style="max-width:50rem;">

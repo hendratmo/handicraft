@@ -133,7 +133,7 @@ def home():
 
 #     return render_template('website/contoh_all_post.html', all_blog_posts=all_blog_posts, chosen_theme=chosen_theme, intros=intros, logged_in=current_user.is_authenticated)
 
-@website.route("/all")
+@website.route("/all_product")
 def all():
     text_data = text()
     isi = []
@@ -161,7 +161,7 @@ def all():
         for i, image in enumerate(image_files)
     ]
     print(items)
-    return render_template('website/all_posts.html', items = items)
+    return render_template('website/all_product.html', items = items)
 
 #FUNGSI ABOUT LAMA, UNTUK AMBIL SEMUA FOTO DI DATABASE
 # @website.route("/about/")
@@ -277,14 +277,18 @@ def contact():
 #                                                     ).order_by(Blog_Replies.date_submitted.asc()).limit(100)
 #     return render_template('website/post_lama.html', blog_posts=blog_post, logged_in=current_user.is_authenticated, comments=comments, replies=replies, post_likes=post_likes, user_liked=user_liked, user_bookmarked=user_bookmarked)
 
-@website.route("/post/<int:index>", methods=["GET", "POST"])
-def blog_post(index):
-    index = index - 1
+@website.route("/post/<category>", methods=["GET", "POST"])
+def blog_post(category):
+    daftar = ["Beads", "Choco_Bouquet", "Doll_Bouquet", "Flower_Bouquet", "Key_Chain"]
+    if category not in daftar:
+        return "Category not found", 404
+    
+    index = daftar.index(category)
     text_data = text()
     isi_dict = text_data.get('isi_isi_data', {}).get('Isi', {})
     outer_keys = list(isi_dict)
-    if index < 0 or index >= len(outer_keys):
-        return "Post Not Found", 404
+    if index >= len(outer_keys):
+        return "Data not found"
     
     selected_key = outer_keys[index]
     post_dict = isi_dict.get(selected_key, {})

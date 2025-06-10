@@ -7,7 +7,7 @@
                 "short_title" : "Colorful, shiny beads that add sparkle to any creation",
                 "content" : "A handcrafted piece made from delicate beads that shimmer with every movement, showcasing intricate detail and elegance.",
                 "description" : "Dazzling beadwork creation that embodies elegance and brilliance. Every piece is handcrafted using high-quality beads that reflect light beautifully, creating a shimmering effect that draws attention effortlessly. The design focuses on symmetry and intricate detailing, showcasing the artisan's precision and artistic flair. Whether displayed as a decorative ornament or worn as a statement accessory, Sparkle brings sophistication and charm into any space it touches. Beyond its visual appeal, Sparkle represents the dedication and craftsmanship of traditional handiwork. Each bead is carefully selected and placed with care, resulting in a product that is both timeless and unique. It's not just a beautiful piece, it's a celebration of artistry, patience, and the enduring beauty of handcrafted items. For those who value elegance with a personal touch, Sparkle is the perfect embodiment of refined handmade beauty.",
-                "image" : "/static/Main_Post/Handicraft/Beads_1.jpg"
+                "image" : "/static/Main_Post/Handicraft/Beads_1.jpeg"
             },
             "Handicraft_2" : {
                 "id" : "2",
@@ -15,7 +15,7 @@
                 "short_title" : "Handmade treasures that bring joy, charm, and creative bliss",
                 "content" : "Blends Creativity and precision in a beautiful beadwork design, delivering a touch of joy and artistry in every handcrafted element.",
                 "description" : "Vibrant, cheerful beadwork collection that celebrates creativity and joyful expression. With colorful beads arranged in playful, imaginative patterns, it captures a lighthearted energy that instantly brightens its surroundings. The design is intentionally bold and whimsical, making Crafty Bliss a favorite for those who love to showcase personality through art. Each piece is a reminder of the joy found in making things by hand and the beauty of imperfection in craftsmanship. At its core, Crafty Bliss is a tribute to the spirit of handmade artistry. It blends tradition with innovation, combining classic beading techniques with fresh, creative ideas. The result is a product that's not only beautiful but also deeply personal something that reflects the heart and soul of its creator. Ideal for gifts or personal keepsakes, Crafty Bliss brings warmth, happiness, and a sense of playful wonder to anyone who sees or owns it.",
-                "image" : "/static/Main_Post/Handicraft/Beads_2.jpg"
+                "image" : "/static/Main_Post/Handicraft/Beads_2.jpeg"
             }
         },
         "Choco Bouquet" : {
@@ -72,14 +72,14 @@
                 "image" : "/static/Main_Post/Buket_Bunga/Flower_Bouquet_2.jpg"
             }
         },      
-        "Bag_KeyChain" : {
+        "KeyChain" : {
             "Bag_KeyChain_1" : {
                 "id" : "1",
                 "title" : "Charm Loop",
                 "short_title" : "Tiny, stylish keychain shaped like a cute bag for accessorizing",
                 "content" : "A chic and playful keychain accessory that adds personality and flair to any bag with its elegant charm loop design.",
                 "description" : "CharmLoop is the perfect blend of functionality and fashion, designed to elevate the look of any handbag or backpack. Crafted with meticulous attention to detail, this bag keychain features a polished loop design adorned with delicate embellishments that shimmer subtly with movement. Whether you're heading to a casual outing or a formal event, CharmLoop complements your style with a graceful and modern flair. More than just an accessory, CharmLoop is a statement piece. Its secure clasp ensures it stays firmly attached to your bag while offering a dash of charm to your daily carry. The lightweight build and elegant profile make it ideal for those who appreciate understated luxury and smart design. It's the little detail that makes your bag uniquely yours.",
-                "image" : "/static/Main_Post/Gantungan_Tas/KeyChain_1.jpg"
+                "image" : "/static/Main_Post/Gantungan_Tas/KeyChain_1.jpeg"
             },
             "Bag_KeyChain_2" : {
                 "id" : "2",
@@ -87,7 +87,7 @@
                 "short_title" : "Chic tote bag adorned with decorative tassels for a stylish look",
                 "content" : "A handcrafted bag keychain featuring soft tassels, perfect for enhancing your tote with a touch of sophistication and style.",
                 "description" : "TasselTote brings a boho-inspired twist to your everyday carry with its handcrafted tassel design. Made from soft threads in harmonious colors, it effortlessly adds warmth, personality, and motion to your bag. Whether dangling from a leather tote or canvas sling, TasselTote brings a stylish splash to your look with every swing. Perfect for creative souls and fashion-forward individuals, this keychain doubles as a decorative charm and a functional accessory for your keys or ID tags. Its handcrafted nature makes each piece slightly unique, ensuring that your style remains as individual as you are. TasselTote is not just an adornment, it's a small piece of art you can carry everywhere.",
-                "image" : "/static/Main_Post/Gantungan_Tas/KeyChain_2.jpg"
+                "image" : "/static/Main_Post/Gantungan_Tas/KeyChain_2.jpeg"
             }
         }
     }
