@@ -23,6 +23,7 @@ directory_image_post = "app/static/Pictures_Liquet_Post/"
 directory_image_theme = "app/static/Pictures_Themes/"
 directory_image_home = "app/static/Best_Seller/"
 directory_image_birthday_wishes = "app/static/Birthday_Wishes/"
+directory_image_gallery = "app/static/Gallery"
 
 website = Blueprint('website', __name__,
                     static_folder="../static", template_folder="../template")
@@ -179,6 +180,7 @@ def about():
         img for img in os.listdir(directory_image_about)
         if img.endswith((".jpg", ".jpeg", ".png", ".webp"))
     ]
+    print('image_files : ', image_files)
 
     items = [
         {
@@ -306,6 +308,30 @@ def blog_post(category):
             "judul" : selected_key
     })
     return render_template('website/post.html', items = items)
+
+@website.route("/gallery", methods=["GET", "POST"])
+def gallery():
+    galeri_buket_boneka = directory_image_gallery + '/Buket_Boneka/'
+    galeri_buket_bunga = directory_image_gallery + '/Buket_Bunga/'
+    galeri_buket_coklat = directory_image_gallery + '/Buket_Coklat/'
+    galeri_handicraft = directory_image_gallery + '/Handicraft/'
+    folders = [galeri_buket_boneka, galeri_buket_bunga, galeri_buket_coklat, galeri_handicraft]
+    
+    image_files = []
+    for folder in folders:
+        for img in os.listdir(folder):
+            if img.endswith(('.jpg', '.jpeg', '.webp', '.png')):
+                image_files.append(os.path.join(folder, img).replace("app/", ""))
+
+    items = [
+        {
+            "index" : i,
+            "image" : image
+        }
+        for i, image in enumerate(image_files)
+    ]
+
+    return render_template('website/gallery.html', items = items)
 
 # Comment or reply on post
 @website.route("/comment_post/<int:index>", methods=["POST"])
