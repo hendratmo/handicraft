@@ -315,7 +315,9 @@ def gallery():
     galeri_buket_bunga = directory_image_gallery + '/Buket_Bunga/'
     galeri_buket_coklat = directory_image_gallery + '/Buket_Coklat/'
     galeri_handicraft = directory_image_gallery + '/Handicraft/'
-    folders = [galeri_buket_boneka, galeri_buket_bunga, galeri_buket_coklat, galeri_handicraft]
+    folders = [
+        galeri_buket_boneka, galeri_buket_bunga, galeri_buket_coklat, galeri_handicraft
+    ]
     
     image_files = []
     for folder in folders:
