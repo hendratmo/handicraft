@@ -21,4 +21,5 @@ def seed_data():
     
 if __name__ == '__main__':
     seed_data()
-    app.run(debug=os.getenv("FLASK_DEBUG", "1") == "1")
+    # app.run(debug=os.getenv("FLASK_DEBUG", "1") == "1")
+    app.run(debug=True)
